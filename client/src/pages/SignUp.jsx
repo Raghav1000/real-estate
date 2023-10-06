@@ -3,6 +3,7 @@ import { signUpFormData } from "../utils/helper"
 import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { signUpFailure, signUpStart, signUpSuccess } from "../redux/user/userSlice"
+import GoogleAuth from "../components/GoogleAuth"
 
 const SignUp = () => {
   const [formData, setFormData] = useState({})
@@ -54,7 +55,8 @@ const SignUp = () => {
             {loading ? 'Loading' : 'Sign up'}
           </button>
           {error && <span className="text-red-500">{error}</span>}
-          <button onClick={() => navigate('/sign-in')} type="button" className="w-1/4 rounded-md border border-blue-900 py-3 text-blue-900">
+          <GoogleAuth />
+          <button onClick={() => navigate('/sign-in')} type="button" className="w-1/4 rounded-md border border-blue-900 py-3 text-blue-900 mt-10">
             Sign in
           </button>
         </form>

@@ -3,6 +3,7 @@ import { signInFormData } from "../utils/helper"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { signInStart, signInFailure, signInSuccess } from "../redux/user/userSlice"
+import GoogleAuth from "../components/GoogleAuth"
 
 const SignIn = () => {
   const [formData, setFormData] = useState({})
@@ -53,8 +54,9 @@ const SignIn = () => {
           <button disabled={loading} type="submit" className="w-1/4 rounded-md bg-blue-900 py-3 text-white">
             {loading ? 'Loading' : 'Sign in'}
           </button>
+          <GoogleAuth />
           {error && <span className="text-red-500">{error}</span>}
-          <button onClick={() => navigate('/sign-up')} type="button" className="w-1/4 rounded-md border border-blue-900 py-3 text-blue-900">
+          <button onClick={() => navigate('/sign-up')} type="button" className="w-1/4 rounded-md border border-blue-900 py-3 text-blue-900 mt-10">
             Sign up
           </button>
         </form>
