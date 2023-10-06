@@ -21,7 +21,7 @@ app.use('/api/user', userRouter)
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
-    const errorMessage = err.message || 'Internal server error'
+    const errorMessage = err.errorMessage || err.message || 'Internal server error'
 
     return res.status(statusCode).json({
         success: false,
