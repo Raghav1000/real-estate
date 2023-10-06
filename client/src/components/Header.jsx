@@ -9,13 +9,14 @@ const Header = () => {
                 <Link to='/'>
                     <h1 className='font-bold text-lg'>Real Estate</h1>
                 </Link>
-                <form>
-                    <input type='text' placeholder='Search' className='py-2 indent-3 border bg-slate-100 rounded-sm focus:outline-none' />
-                </form>
-                <ul className="flex gap-5">
+                <ul className="flex gap-5 place-items-center
+                ">
+                    <form>
+                        <input type='text' placeholder='Search' className='py-2 indent-3 border bg-slate-100 rounded-sm' />
+                    </form>
                     {
                         routes.map(({ route, title }) => (
-                            <Link to={route}>
+                            <Link key={title} to={route}>
                                 <li className="hover:text-blue-900">{title}</li>
                             </Link>))
                     }

@@ -1,23 +1,26 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import About from './pages/About'
 import Profile from './pages/Profile'
 import Header from './components/Header'
+import { renderHeaderConditionally } from './utils/helper'
 
 const App = () => {
+  const location = useLocation();
+
   return (
-    <BrowserRouter>
-      <Header />
+    <>
+      {!renderHeaderConditionally(location) && <Header />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/sign-in' element={<SignIn />} />
-        <Route path='/sing-up' element={<SignUp />} />
+        <Route path='/sign-up' element={<SignUp />} />
         <Route path='/about' element={<About />} />
         <Route path='/profile' element={<Profile />} />
       </Routes>
-    </BrowserRouter>
+    </>
   )
 }
 
