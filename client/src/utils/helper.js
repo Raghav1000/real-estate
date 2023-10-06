@@ -1,7 +1,6 @@
 const routes = [
     { route: "/", title: "Home" },
     { route: "/about", title: "About" },
-    { route: "/sign-in", title: "Sign in" },
 ]
 
 const renderHeaderConditionally = () => {
@@ -12,16 +11,22 @@ const renderHeaderConditionally = () => {
 }
 
 const signUpFormData = [
-    {type:'text', placeholder:"Username" ,id:'username'},
-    {type:'email', placeholder:"Email" ,id:'email'},
-    {type:'password', placeholder:"Password" ,id:'password'},
+    { type: 'text', placeholder: "Username", id: 'username' },
+    { type: 'email', placeholder: "Email", id: 'email' },
+    { type: 'password', placeholder: "Password", id: 'password' },
 ]
 
-const signInFormData = signUpFormData.filter(({id})=> id !== 'username')
+const signInFormData = signUpFormData.filter(({ id }) => id !== 'username')
+
+const getDefaultValue = (id, currentUser) => {
+    if(id === 'username') return currentUser?.username
+    if(id === 'email') return currentUser?.email
+}
 
 export {
     routes,
     renderHeaderConditionally,
     signUpFormData,
-    signInFormData
+    signInFormData,
+    getDefaultValue
 }

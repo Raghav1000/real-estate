@@ -40,7 +40,7 @@ const SignIn = () => {
   }
 
   return (
-    <div className="bg-blue-50 w-screen h-screen">
+    <div className="bg-blue-50 w-screen h-screen"> 
       <div>
         <h1 className="text-3xl font-bold text-center py-20 text-blue-950">SIGN IN</h1>
         {/* Yup formik validation for this form */}

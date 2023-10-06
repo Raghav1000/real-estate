@@ -40,7 +40,6 @@ const signIn = async (req, res, next) => {
 }
 
 const googleAuth = async (req, res, next) => {
-    console.log('hits')
     try {
         const { username, email, photo } = req.body
         const user = await User.findOne({ email })
@@ -53,12 +52,10 @@ const googleAuth = async (req, res, next) => {
                 .json(restUserInformation)
 
         } else {
-            console.log('hits2')
             const generatePassword = Math.random().toString(36).slice(8)
             const hashedPassword = bcryptjs.hashSync(generatePassword, 10)
-            const newUser = new User({ username, email, password: hashedPassword, avatar:photo })
+            const newUser = new User({ username, email, password: hashedPassword, avatar: photo })
             await newUser.save()
-            console.log(newUser, 'newUser')
             const { password: pass, ...restUserInformation } = newUser._doc
             const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET)
             res
@@ -71,6 +68,15 @@ const googleAuth = async (req, res, next) => {
     }
 }
 
+const signOut = (req, res, next) => {
+    try {
+        res.clearCookie('access_token')
+        res.status(200).json('User has been logged out')
+    } catch (error) {
+        next(error)
+    }
+}
+
 export {
-    signUp, signIn, googleAuth
+    signUp, signIn, googleAuth, signOut
 }
