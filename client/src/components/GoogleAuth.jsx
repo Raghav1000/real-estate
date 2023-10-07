@@ -20,7 +20,7 @@ const GoogleAuth = () => {
                 },
                 body: JSON.stringify({ username: displayName, email, photo })
             })
-            const data = await res.json()
+            const data = await res.json();
             dispatch(signInSuccess(data))
             navigate('/')
 

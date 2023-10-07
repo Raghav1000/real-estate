@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react"
 import { app } from "../firebase.config"
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutUserFailure, signOutUserStart, signOutUserSuccess } from "../redux/user/userSlice"
+import { useNavigate } from "react-router-dom"
 
 const Profile = () => {
   const [file, setFile] = useState()
@@ -14,6 +15,7 @@ const Profile = () => {
   const fileRef = useRef()
   const { currentUser, error, loading } = useSelector((state => state.user))
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const commonInputCss = "w-1/4 border border-gray-200 py-3 indent-3 rounded-md"
 
 
@@ -140,7 +142,15 @@ const Profile = () => {
           {loading ? 'Loading' : 'Update'}
         </button>
         {updateSuccessfulMessage && <span className="text-green-500">Updated Successfully</span>}
-        <div className="w-1/4  flex justify-between">
+        <div className="w-1/4 flex gap-3 justify-between">
+          <button type="button" onClick={() => navigate('/create-listing')}className="flex-1 rounded-md bg-green-900 py-3 text-white">
+            Create Listing
+          </button>
+          <button type="button" onClick={() => navigate('/create-listing')} className="flex-1 rounded-md bg-green-900 py-3 text-white">
+            Show Listings
+          </button>
+        </div>
+        <div className="w-1/4 flex justify-between">
           <button type="button" onClick={handleDelete} className="text-red-500">
             Delete account
           </button>

@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
 import userRouter from './routes/user.js'
 import authRouter from './routes/auth.js'
+import listingRouter from './routes/listing.js'
 
 dotenv.config()
 
@@ -20,6 +21,7 @@ app.listen(3000, () => console.log('Server running at port 3000'))
 
 app.use('/api/auth', authRouter)
 app.use('/api/user', userRouter)
+app.use('/api/listing', listingRouter)
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
